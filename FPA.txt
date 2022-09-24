@@ -1,0 +1,37 @@
+import java.util.*;
+public class Main
+{
+    static void ufp()
+    {
+  	  int UFP=0;
+  	  int w[]={4,5,4,10,7};
+  	  int z[]={1,2,3,4,5};
+	  for(int i=0;i<5;i++)
+	  {
+	   for(int j=0;j<5;j++)
+	   {
+	     UFP+=z[i]*w[j];
+	   }
+	  }
+	  System.out.println(UFP);
+    }
+    static void caf()
+    {
+	  double CAF;
+	  int c=3;
+	    CAF=0.65+(0.01*(c*14));
+	    System.out.println(CAF);
+    }
+    static void function_point()
+    {
+	  int UFP,CAF,FP;
+	  FP=UFP*CAF;
+	  System.out.println(FP);
+    }
+	public static void main(String[] args) 
+	{
+	    ufp();
+	    caf();
+	    function_point();
+	}
+}

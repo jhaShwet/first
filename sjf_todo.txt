@@ -1,0 +1,60 @@
+#include <stdio.h>
+void waitTime(int process[],int n,int bt[],int wt[])
+{
+   wt[0]=0;
+   for(int i=1;i<n;i++)
+   {
+       wt[i]=bt[i-1]+wt[i-1];
+   }
+}
+void tatTime(int process[],int n,int bt[], int wt[],int tat[])
+{
+    for(int i=0;i<n;i++)
+    {
+        tat[i]=bt[i]+wt[i];
+    }
+}
+void burstTime(int process[],int n,int bt[], int temp)
+{
+   for(int i=0;i<n;i++)
+   {
+       for(int j=0;j<n-1;j++)
+       {
+         if(bt[j+1]<bt[j])
+         {
+           int temp=0;
+           temp=bt[j];
+           bt[j]=bt[j+1];
+           bt[j+1]=temp;
+         }
+       }
+   }
+}
+void avgTime(int process[],int n,int bt[])
+{
+    int temp,j;
+    int wt[n],tat[n];
+    int total_wait=0,total_tat=0;
+    waitTime(process,n,bt,wt);
+    tatTime(process,n,bt,wt,tat);
+    burstTime(process,n,bt,temp);
+    printf("Process Burst-time Wait-time Turn-around-time\n");
+    for(int i=0;i<n;i++)
+    {
+       total_wait=total_wait+wt[i];
+       total_tat=total_tat+tat[i];
+        printf("%d\t%d\t\t%d\t%d\n",i+1,bt[j+1],wt[i],tat[i]);
+    }
+    float avgW=(float)total_wait/(float)n;
+    float avgT=(float)total_tat/(float)n;
+    printf("Average wait-time: %f\n",avgW);
+    printf("Average tat-time: %f\n",avgT);
+}
+int main()
+{
+    int process[]={1,2,3};
+    int bt[]={3,2,5};
+    int n=sizeof process/sizeof process[0];
+    avgTime(process,n,bt);
+    return 0;
+}
